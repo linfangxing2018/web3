@@ -406,12 +406,7 @@ export default defineConfig({
 
 ```typescript
 // proxy.ts
-import {
-  API_BASE_URL,
-  API_TARGET_URL,
-  MOCK_API_BASE_URL,
-  MOCK_API_TARGET_URL,
-} from '@config/constant';
+import { API_BASE_URL, API_TARGET_URL, MOCK_API_BASE_URL, MOCK_API_TARGET_URL } from '@config/constant';
 import { ProxyOptions } from 'vite';
 type ProxyTargetList = Record<string, ProxyOptions>;
 
@@ -457,7 +452,6 @@ pnpm run dev
 ```
 
 如果不报错，恭喜你点火成功。否则，请提报你的问题到[Issues](https://github.com/tobe-fe-dalao/fast-vue3/issues)。
-
 
 # 工具库
 
@@ -514,7 +508,6 @@ pnpm run dev
 # Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=tobe-fe-dalao/fast-vue3&type=Timeline)](https://star-history.com/#tobe-fe-dalao/fast-vue3&Timeline)
-
 
 # 最后
 

@@ -77,8 +77,8 @@
 
 ```typescript
 // モジュラーライティング
-import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver, VueUseComponentsResolver } from 'unplugin-vue-components/resolvers'
+import Components from 'unplugin-vue-components/vite';
+import { ElementPlusResolver, VueUseComponentsResolver } from 'unplugin-vue-components/resolvers';
 export const AutoRegistryComponents = () => {
   return Components({
     // dirs: ['src/components'],
@@ -91,8 +91,8 @@ export const AutoRegistryComponents = () => {
     include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
     exclude: [/[\\/]node_modules[\\/]/, /[\\/]\.git[\\/]/, /[\\/]\.nuxt[\\/]/],
     resolvers: [ElementPlusResolver(), VueUseComponentsResolver()],
-  })
-}
+  });
+};
 ```
 
 ## 🧩Vite プラグインのモジュール性
@@ -105,18 +105,18 @@ export const AutoRegistryComponents = () => {
  * @name createVitePlugins
  * @description Encapsulate the plugins array to call uniformly
  */
-import type { Plugin } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
-import { ConfigSvgIconsPlugin } from './svgIcons'
-import { AutoRegistryComponents } from './component'
-import { AutoImportDeps } from './autoImport'
-import { ConfigMockPlugin } from './mock'
-import { ConfigVisualizerConfig } from './visualizer'
-import { ConfigCompressPlugin } from './compress'
-import { ConfigPagesPlugin } from './pages'
-import { ConfigMarkDownPlugin } from './markdown'
-import { ConfigRestartPlugin } from './restart'
+import type { Plugin } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import vueJsx from '@vitejs/plugin-vue-jsx';
+import { ConfigSvgIconsPlugin } from './svgIcons';
+import { AutoRegistryComponents } from './component';
+import { AutoImportDeps } from './autoImport';
+import { ConfigMockPlugin } from './mock';
+import { ConfigVisualizerConfig } from './visualizer';
+import { ConfigCompressPlugin } from './compress';
+import { ConfigPagesPlugin } from './pages';
+import { ConfigMarkDownPlugin } from './markdown';
+import { ConfigRestartPlugin } from './restart';
 
 export function createVitePlugins(isBuild: boolean) {
   const vitePlugins: (Plugin | Plugin[])[] = [
@@ -136,14 +136,14 @@ export function createVitePlugins(isBuild: boolean) {
     ConfigMarkDownPlugin(),
     // 構成ファイルの変更を監視して再起動します
     ConfigRestartPlugin(),
-  ]
+  ];
   // vite-plugin-svg-icons
-  vitePlugins.push(ConfigSvgIconsPlugin(isBuild))
+  vitePlugins.push(ConfigSvgIconsPlugin(isBuild));
   // vite-plugin-mock
-  vitePlugins.push(ConfigMockPlugin(isBuild))
+  vitePlugins.push(ConfigMockPlugin(isBuild));
   // rollup-plugin-visualizer
-  vitePlugins.push(ConfigVisualizerConfig())
-  return vitePlugins
+  vitePlugins.push(ConfigVisualizerConfig());
+  return vitePlugins;
 }
 ```
 
@@ -183,19 +183,19 @@ return {
 
 ```typescript
 // モジュール化をサポートし、plopを使用してコマンドラインからワンクリックで生成できます
-import { createPinia } from 'pinia'
-import { useAppStore } from './modules/app'
-import { useUserStore } from './modules/user'
-const pinia = createPinia()
-export { useAppStore, useUserStore }
-export default pinia
+import { createPinia } from 'pinia';
+import { useAppStore } from './modules/app';
+import { useUserStore } from './modules/user';
+const pinia = createPinia();
+export { useAppStore, useUserStore };
+export default pinia;
 ```
 
 ファイルを作成する `src/store/modules/user/index.ts`
 
 ```typescript
-import { defineStore } from 'pinia'
-import piniaStore from '@/store'
+import { defineStore } from 'pinia';
+import piniaStore from '@/store';
 export const useUserStore = defineStore(
   // unique id
   'user',
@@ -204,7 +204,7 @@ export const useUserStore = defineStore(
     getters: {},
     actions: {},
   },
-)
+);
 ```
 
 ## 🤖 ファイルを自動的に生成するための `Plop`をサポート
@@ -219,12 +219,12 @@ pnpm add plop
 ルートディレクトリ `plopfile.ts`に作成します
 
 ```typescript
-import { NodePlopAPI } from 'plop'
+import { NodePlopAPI } from 'plop';
 export default function (plop: NodePlopAPI) {
-  plop.setWelcomeMessage('Please select the pattern you want to create')
-  plop.setGenerator('page', require('./plop-tpls/page/prompt'))
-  plop.setGenerator('component', require('./plop-tpls/component/prompt'))
-  plop.setGenerator('store', require('./plop-tpls/store/prompt'))
+  plop.setWelcomeMessage('Please select the pattern you want to create');
+  plop.setGenerator('page', require('./plop-tpls/page/prompt'));
+  plop.setGenerator('component', require('./plop-tpls/component/prompt'));
+  plop.setGenerator('store', require('./plop-tpls/store/prompt'));
 }
 ```
 
@@ -289,14 +289,14 @@ plugins:[
       type: String,
       default: 'default',
     },
-  })
-  const symbolId = computed(() => `#${props.prefix}-${props.name}`)
+  });
+  const symbolId = computed(() => `#${props.prefix}-${props.name}`);
   const calsses = computed(() => {
     return {
       [`sdms-size-${props.size}`]: props.size,
-    }
-  })
-  const fontSize = reactive({ default: '32px', small: '20px', large: '48px' })
+    };
+  });
+  const fontSize = reactive({ default: '32px', small: '20px', large: '48px' });
 </script>
 ```
 
@@ -306,23 +306,23 @@ plugins:[
 
 ```typescript
 // カプセル化 src/api/user/index.ts
-import request from '@utils/http/axios'
-import { IResponse } from '@utils/http/axios/type'
-import { ReqAuth, ReqParams, ResResult } from './type'
+import request from '@utils/http/axios';
+import { IResponse } from '@utils/http/axios/type';
+import { ReqAuth, ReqParams, ResResult } from './type';
 enum URL {
   login = '/v1/user/login',
   userProfile = 'mock/api/userProfile',
 }
-const getUserProfile = async () => request<ReqAuth>({ url: URL.userProfile })
-const login = async (data: ReqParams) => request({ url: URL.login, data })
-export default { getUserProfile, login }
+const getUserProfile = async () => request<ReqAuth>({ url: URL.userProfile });
+const login = async (data: ReqParams) => request({ url: URL.login, data });
+export default { getUserProfile, login };
 ```
 
 ```typescript
 // 移行
-import userApi from '@api/user'
+import userApi from '@api/user';
 // コンポーネントは、セットアップモードで直接参照できます
-const res = await userApi.profile()
+const res = await userApi.profile();
 ```
 
 ## 👽 自動生成 `router`、 コンポーネントをフィルタリングします
@@ -330,17 +330,17 @@ const res = await userApi.profile()
 `vue-router4.0`のモジュール化をサポートし、pages フォルダーを取得してルートを自動的に生成し、動的ルートをサポートします
 
 ```typescript
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import routes from 'virtual:generated-pages'
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
+import routes from 'virtual:generated-pages';
 
-console.log(routes, 'print generate auto-generated routes')
+console.log(routes, 'print generate auto-generated routes');
 // 生成されたルーティングデータをインポートする
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
-})
+});
 
-export default router
+export default router;
 ```
 
 ## 🧬 サポート Mock data
@@ -359,25 +359,25 @@ viteMockServe({
        import { setupProdMockServer } from '../mock/_createProdMockServer';
        setupProdMockServer();
        `,
-})
+});
 ```
 
 ルートディレクトリに `_createProductionServer.ts`ファイルを作成します。`_`で始まらないファイルは自動的にモックファイルにロードされます
 
 ```typescript
-import { createProdMockServer } from 'vite-plugin-mock/es/createProdMockServer'
+import { createProdMockServer } from 'vite-plugin-mock/es/createProdMockServer';
 // Bulk load
-const modules = import.meta.globEager('./mock/*.ts')
+const modules = import.meta.globEager('./mock/*.ts');
 
-const mockModules: Array<string> = []
+const mockModules: Array<string> = [];
 Object.keys(modules).forEach((key) => {
   if (key.includes('/_')) {
-    return
+    return;
   }
-  mockModules.push(...modules[key].default)
-})
+  mockModules.push(...modules[key].default);
+});
 export function setupProdMockServer() {
-  createProdMockServer(mockModules)
+  createProdMockServer(mockModules);
 }
 ```
 
@@ -403,14 +403,9 @@ export default defineConfig({
 
 ```typescript
 // proxy.ts
-import {
-  API_BASE_URL,
-  API_TARGET_URL,
-  MOCK_API_BASE_URL,
-  MOCK_API_TARGET_URL,
-} from '@config/constant'
-import { ProxyOptions } from 'vite'
-type ProxyTargetList = Record<string, ProxyOptions>
+import { API_BASE_URL, API_TARGET_URL, MOCK_API_BASE_URL, MOCK_API_TARGET_URL } from '@config/constant';
+import { ProxyOptions } from 'vite';
+type ProxyTargetList = Record<string, ProxyOptions>;
 
 const init: ProxyTargetList = {
   // test
@@ -425,9 +420,9 @@ const init: ProxyTargetList = {
     changeOrigin: true,
     rewrite: (path) => path.replace(new RegExp(`^${MOCK_API_BASE_URL}`), '/api'),
   },
-}
+};
 
-export default init
+export default init;
 ```
 
 ## 🎉 そのた

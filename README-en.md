@@ -76,8 +76,8 @@ The following is the directory structure of the system
 
 ```typescript
 //Modular writing
-import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver, VueUseComponentsResolver } from 'unplugin-vue-components/resolvers'
+import Components from 'unplugin-vue-components/vite';
+import { ElementPlusResolver, VueUseComponentsResolver } from 'unplugin-vue-components/resolvers';
 export const AutoRegistryComponents = () => {
   return Components({
     // dirs: ['src/components'],
@@ -90,8 +90,8 @@ export const AutoRegistryComponents = () => {
     include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
     exclude: [/[\\/]node_modules[\\/]/, /[\\/]\.git[\\/]/, /[\\/]\.nuxt[\\/]/],
     resolvers: [ElementPlusResolver(), VueUseComponentsResolver()],
-  })
-}
+  });
+};
 ```
 
 ## 🧩Vite plugin modularity
@@ -104,18 +104,18 @@ In order to facilitate the management of plugins, put all `config` into `config/
  * @name createVitePlugins
  * @description Encapsulate the plugins array to call uniformly
  */
-import type { Plugin } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
-import { ConfigSvgIconsPlugin } from './svgIcons'
-import { AutoRegistryComponents } from './component'
-import { AutoImportDeps } from './autoImport'
-import { ConfigMockPlugin } from './mock'
-import { ConfigVisualizerConfig } from './visualizer'
-import { ConfigCompressPlugin } from './compress'
-import { ConfigPagesPlugin } from './pages'
-import { ConfigMarkDownPlugin } from './markdown'
-import { ConfigRestartPlugin } from './restart'
+import type { Plugin } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import vueJsx from '@vitejs/plugin-vue-jsx';
+import { ConfigSvgIconsPlugin } from './svgIcons';
+import { AutoRegistryComponents } from './component';
+import { AutoImportDeps } from './autoImport';
+import { ConfigMockPlugin } from './mock';
+import { ConfigVisualizerConfig } from './visualizer';
+import { ConfigCompressPlugin } from './compress';
+import { ConfigPagesPlugin } from './pages';
+import { ConfigMarkDownPlugin } from './markdown';
+import { ConfigRestartPlugin } from './restart';
 
 export function createVitePlugins(isBuild: boolean) {
   const vitePlugins: (Plugin | Plugin[])[] = [
@@ -135,14 +135,14 @@ export function createVitePlugins(isBuild: boolean) {
     ConfigMarkDownPlugin(),
     // Monitor configuration file changes and restart
     ConfigRestartPlugin(),
-  ]
+  ];
   // vite-plugin-svg-icons
-  vitePlugins.push(ConfigSvgIconsPlugin(isBuild))
+  vitePlugins.push(ConfigSvgIconsPlugin(isBuild));
   // vite-plugin-mock
-  vitePlugins.push(ConfigMockPlugin(isBuild))
+  vitePlugins.push(ConfigMockPlugin(isBuild));
   // rollup-plugin-visualizer
-  vitePlugins.push(ConfigVisualizerConfig())
-  return vitePlugins
+  vitePlugins.push(ConfigVisualizerConfig());
+  return vitePlugins;
 }
 ```
 
@@ -182,19 +182,19 @@ Create a file `src/store/index.ts`
 
 ```typescript
 // Supports modularization, and can be generated with one click from the command line with plop
-import { createPinia } from 'pinia'
-import { useAppStore } from './modules/app'
-import { useUserStore } from './modules/user'
-const pinia = createPinia()
-export { useAppStore, useUserStore }
-export default pinia
+import { createPinia } from 'pinia';
+import { useAppStore } from './modules/app';
+import { useUserStore } from './modules/user';
+const pinia = createPinia();
+export { useAppStore, useUserStore };
+export default pinia;
 ```
 
 Create a file `src/store/modules/user/index.ts`
 
 ```typescript
-import { defineStore } from 'pinia'
-import piniaStore from '@/store'
+import { defineStore } from 'pinia';
+import piniaStore from '@/store';
 export const useUserStore = defineStore(
   // unique id
   'user',
@@ -203,7 +203,7 @@ export const useUserStore = defineStore(
     getters: {},
     actions: {},
   },
-)
+);
 ```
 
 ## 🤖 Support `Plop` to automatically generate files
@@ -218,12 +218,12 @@ pnpm add plop
 Create in the root directory `plopfile.ts`
 
 ```typescript
-import { NodePlopAPI } from 'plop'
+import { NodePlopAPI } from 'plop';
 export default function (plop: NodePlopAPI) {
-  plop.setWelcomeMessage('Please select the pattern you want to create')
-  plop.setGenerator('page', require('./plop-tpls/page/prompt'))
-  plop.setGenerator('component', require('./plop-tpls/component/prompt'))
-  plop.setGenerator('store', require('./plop-tpls/store/prompt'))
+  plop.setWelcomeMessage('Please select the pattern you want to create');
+  plop.setGenerator('page', require('./plop-tpls/page/prompt'));
+  plop.setGenerator('component', require('./plop-tpls/component/prompt'));
+  plop.setGenerator('store', require('./plop-tpls/store/prompt'));
 }
 ```
 
@@ -288,14 +288,14 @@ A simple `SvgIcon` component has been encapsulated, which can directly read the 
       type: String,
       default: 'default',
     },
-  })
-  const symbolId = computed(() => `#${props.prefix}-${props.name}`)
+  });
+  const symbolId = computed(() => `#${props.prefix}-${props.name}`);
   const calsses = computed(() => {
     return {
       [`sdms-size-${props.size}`]: props.size,
-    }
-  })
-  const fontSize = reactive({ default: '32px', small: '20px', large: '48px' })
+    };
+  });
+  const fontSize = reactive({ default: '32px', small: '20px', large: '48px' });
 </script>
 ```
 
@@ -305,23 +305,23 @@ It has encapsulated mainstream interceptors, request calls and other methods, di
 
 ```typescript
 //encapsulate src/api/user/index.ts
-import request from '@utils/http/axios'
-import { IResponse } from '@utils/http/axios/type'
-import { ReqAuth, ReqParams, ResResult } from './type'
+import request from '@utils/http/axios';
+import { IResponse } from '@utils/http/axios/type';
+import { ReqAuth, ReqParams, ResResult } from './type';
 enum URL {
   login = '/v1/user/login',
   userProfile = 'mock/api/userProfile',
 }
-const getUserProfile = async () => request<ReqAuth>({ url: URL.userProfile })
-const login = async (data: ReqParams) => request({ url: URL.login, data })
-export default { getUserProfile, login }
+const getUserProfile = async () => request<ReqAuth>({ url: URL.userProfile });
+const login = async (data: ReqParams) => request({ url: URL.login, data });
+export default { getUserProfile, login };
 ```
 
 ```typescript
 // transfer
-import userApi from '@api/user'
+import userApi from '@api/user';
 // Components can be directly referenced in setup mode
-const res = await userApi.profile()
+const res = await userApi.profile();
 ```
 
 ## 👽 Automatically generate `router`, filter `components` components
@@ -329,17 +329,17 @@ const res = await userApi.profile()
 Supports the modularization of `vue-router4.0`, automatically generates routes by retrieving the pages folder, and supports dynamic routes
 
 ```typescript
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import routes from 'virtual:generated-pages'
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
+import routes from 'virtual:generated-pages';
 
-console.log(routes, 'print generate auto-generated routes')
+console.log(routes, 'print generate auto-generated routes');
 // Import generated routing data
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
-})
+});
 
-export default router
+export default router;
 ```
 
 ## 🧬 Support Mock data
@@ -358,25 +358,25 @@ viteMockServe({
        import { setupProdMockServer } from '../mock/_createProdMockServer';
        setupProdMockServer();
        `,
-})
+});
 ```
 
 Create a `_createProductionServer.ts` file in the root directory, files not starting with `_` will be automatically loaded into mock files
 
 ```typescript
-import { createProdMockServer } from 'vite-plugin-mock/es/createProdMockServer'
+import { createProdMockServer } from 'vite-plugin-mock/es/createProdMockServer';
 // Bulk load
-const modules = import.meta.globEager('./mock/*.ts')
+const modules = import.meta.globEager('./mock/*.ts');
 
-const mockModules: Array<string> = []
+const mockModules: Array<string> = [];
 Object.keys(modules).forEach((key) => {
   if (key.includes('/_')) {
-    return
+    return;
   }
-  mockModules.push(...modules[key].default)
-})
+  mockModules.push(...modules[key].default);
+});
 export function setupProdMockServer() {
-  createProdMockServer(mockModules)
+  createProdMockServer(mockModules);
 }
 ```
 
@@ -402,14 +402,9 @@ export default defineConfig({
 
 ```typescript
 // proxy.ts
-import {
-  API_BASE_URL,
-  API_TARGET_URL,
-  MOCK_API_BASE_URL,
-  MOCK_API_TARGET_URL,
-} from '@config/constant'
-import { ProxyOptions } from 'vite'
-type ProxyTargetList = Record<string, ProxyOptions>
+import { API_BASE_URL, API_TARGET_URL, MOCK_API_BASE_URL, MOCK_API_TARGET_URL } from '@config/constant';
+import { ProxyOptions } from 'vite';
+type ProxyTargetList = Record<string, ProxyOptions>;
 
 const init: ProxyTargetList = {
   // test
@@ -424,9 +419,9 @@ const init: ProxyTargetList = {
     changeOrigin: true,
     rewrite: (path) => path.replace(new RegExp(`^${MOCK_API_BASE_URL}`), '/api'),
   },
-}
+};
 
-export default init
+export default init;
 ```
 
 ## 🎉 Other
