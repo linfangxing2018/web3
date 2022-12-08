@@ -2,110 +2,216 @@
  * @Author: linfangxing2018 45490593+linfangxing2018@users.noreply.github.com
  * @Date: 2022-12-05 21:53:32
  * @LastEditors: linfangxing2018 45490593+linfangxing2018@users.noreply.github.com
- * @LastEditTime: 2022-12-05 22:35:11
+ * @LastEditTime: 2022-12-07 00:13:11
  * @FilePath: \web3\src\components\Header\index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <template>
-  <header class="antialiased bg-white Male text-slate-500 dark:text-slate-400 dark:bg-slate-900">
-    <div
-      class="sticky top-0 z-40 w-full backdrop-blur flex-none transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] bg-white/95 supports-backdrop-blur:bg-white/60 dark:bg-transparent"
-    >
-      <div class="mx-auto max-w-8xl">
-        <div class="px-4 py-4 border-b border-slate-900/10 lg:px-8 lg:border-0 dark:border-slate-300/10">
-          <div class="relative flex items-center text-2xl sm:text-2xl font-blimone">
-            <router-link to="/" class="mr-3 flex-none w-[2.0625rem] md:w-auto leading-6 dark:text-slate-200">Fast-Vue3</router-link>
-            <div class="relative items-center hidden ml-auto lg:flex">
-              <nav class="text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200">
-                <ul class="flex space-x-8">
-                  <li>
-                    <router-link to="/demo" class="hover:text-sky-500 dark:hover:text-sky-400">GithubDemo</router-link>
-                  </li>
-                  <li>
-                    <router-link to="/login" class="hover:text-sky-500 dark:hover:text-sky-400">Login</router-link>
-                  </li>
-                </ul>
-              </nav>
-              <div class="flex items-center pl-6 ml-6 border-l border-slate-200 dark:border-slate-800">
-                <el-tooltip :content="theme === 'light' ? '设置暗黑主题' : '设置明亮主题'">
-                  <el-button
-                    class="nav-btn"
-                    :shape="'circle'"
-                    type="info"
-                    plain
-                    :icon="theme === 'dark' ? Sunny : Moon"
-                    circle
-                    size="small"
-                    @click="toggleTheme()"
-                  />
-                </el-tooltip>
-                <a
-                  href="https://github.com/MaleWeb/fast-vue3"
-                  target="_bank"
-                  class="block ml-6 text-slate-400 hover:text-slate-500 dark:hover:text-slate-300"
+  <a-layout class="layout">
+    <a-layout-header class="layout-header">
+      <div class="navbox">
+        <span class="logo">
+          <img src="https://static-prod.upstairs.io/websites/www/assets/common/logo-icon.svg" alt="logo" />
+        </span>
+        <div class="beta">Beta</div>
+        <div class="menuBox">
+          <a class="menuItem active" key="1">首页</a>
+          <a class="menuItem">新品</a>
+          <a class="menuItem">市场</a>
+          <a class="menuItem"
+            >质押
+            <img class="newTag___1Z4WJ" src="https://static-prod.upstairs.io/websites/www/assets/common/new_tag.svg" alt="" srcset="" />
+          </a>
+          <a class="menuItem">我的物品</a>
+          <a-dropdown class="menuItem"
+            ><a
+              >账户
+              <span role="img" aria-label="caret-down" class="anticon anticon-caret-down" style="margin-left: 8px">
+                <svg
+                  viewBox="0 0 1024 1024"
+                  focusable="false"
+                  data-icon="caret-down"
+                  width="1em"
+                  height="1em"
+                  fill="currentColor"
+                  aria-hidden="true"
                 >
-                  <SvgIcon name="svg-github" size="small" color="#999999" />
-                </a>
-              </div>
-            </div>
+                  <path
+                    d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"
+                  />
+                </svg>
+              </span>
+            </a>
+            <template #overlay>
+              <a-menu>
+                <a-menu-item>
+                  <a href="javascript:;">English</a>
+                </a-menu-item>
+                <a-menu-item>
+                  <a href="javascript:;">简体中文</a>
+                </a-menu-item>
+              </a-menu>
+            </template></a-dropdown
+          >
+          <a class="menuItem">公告</a>
+        </div>
+        <div class="rightContent">
+          <div class="selectLanguage">
+            <a-dropdown
+              ><a
+                >简体中文
+                <span role="img" aria-label="caret-down" class="anticon anticon-caret-down" style="margin-left: 8px">
+                  <svg
+                    viewBox="0 0 1024 1024"
+                    focusable="false"
+                    data-icon="caret-down"
+                    width="1em"
+                    height="1em"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"
+                    />
+                  </svg>
+                </span>
+              </a>
+              <template #overlay>
+                <a-menu>
+                  <a-menu-item>
+                    <a href="javascript:;">English</a>
+                  </a-menu-item>
+                  <a-menu-item>
+                    <a href="javascript:;">简体中文</a>
+                  </a-menu-item>
+                </a-menu>
+              </template></a-dropdown
+            >
           </div>
+          <div class="login">登录</div><div class="signup">注册</div>
         </div>
       </div>
-    </div>
-  </header>
+    </a-layout-header>
+  </a-layout>
 </template>
 <script setup lang="ts">
-  import SvgIcon from '../SvgIcon/index.vue';
-  // import { ref } from 'vue'
-  import { useDark, useToggle } from '@vueuse/core';
-  import { useAppStore } from '/@/store';
-  import { Sunny, Moon } from '@element-plus/icons-vue';
+  import { ref } from 'vue';
 
-  // const title = ref('I want to study typescript')
-  // 检测浏览器系统主题
-  // const darkThemeMq = window.matchMedia('(prefers-color-scheme: dark)')
-  const appStore = useAppStore();
-  // const useStore = useUserStore()
-  const theme = computed(() => {
-    return appStore.theme;
-  });
-  const isDark = useDark({
-    selector: 'body',
-    attribute: 'arco-theme',
-    valueDark: 'dark',
-    valueLight: 'light',
-    storageKey: 'arco-theme',
-    onChanged(dark: boolean) {
-      appStore.toggleTheme(dark);
-    },
-  });
-  const toggleTheme = useToggle(isDark);
+  // import { useAppStore } from '/@/store';
+  // import Header from '/@/components/Header/index.vue';
+
+  const selectedKeys = ref<string[]>(['1']);
 </script>
 
 <style lang="less">
-  .prose {
-    color: #334155;
-    font-size: 0.875em;
-    font-variant-ligatures: none;
-
-    code {
-      color: #0f172a;
-      font-family: Fira Code VF, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
-
-      &::before {
-        content: '`';
-      }
-
-      &::after {
-        content: '`';
-      }
+  .layout {
+    a {
+      color: #fff;
+      text-decoration: none;
+      background-color: transparent;
+      outline: none;
+      cursor: pointer;
+      transition: color 0.3s;
     }
+    .layout-header {
+      background: rgba(19, 29, 41, 0.2);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 99;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      height: 68px;
+      line-height: 68px;
+      backdrop-filter: blur(15px);
+      padding: 0 50px;
+      color: #fff;
+      .navbox {
+        display: flex;
+        justify-content: space-between;
+        width: 1250px;
+        .logo {
+          margin-right: 24px;
+          color: #fff;
+          font-weight: 700;
+          cursor: pointer;
+          img {
+            width: 119px;
+          }
+        }
+        .beta {
+          width: 38px;
+          height: 16px;
+          border: 1px solid hsla(0, 0%, 100%, 0.5);
+          border-radius: 2px;
+          font-size: 11px;
+          line-height: 14px;
+          color: hsla(0, 0%, 100%, 0.5);
+          text-align: center;
+          margin-top: 28px;
+          margin-left: -12px;
+        }
+        .menuBox {
+          flex: 1 1;
+          text-align: center;
 
-    &.dark\:prose-dark {
-      color: #94a3b8;
-
-      code {
-        color: #e2e8f0;
+          .menuItem {
+            display: inline-block;
+            margin: 0 16px;
+            color: hsla(0, 0%, 100%, 0.7);
+            position: relative;
+            .newTag {
+              margin: -5px 0 0 5px;
+              vertical-align: middle;
+              border-style: none;
+            }
+          }
+          .active {
+            color: #fff;
+            font-weight: 500;
+          }
+        }
+        .rightContent {
+          display: flex;
+          align-items: center;
+          .selectLanguage {
+            margin-right: 16px;
+            a {
+              .anticon {
+                margin-left: 8px;
+                display: inline-block;
+                color: inherit;
+                font-style: normal;
+                line-height: 0;
+                text-align: center;
+                text-transform: none;
+                vertical-align: -0.125em;
+                text-rendering: optimizelegibility;
+                -webkit-font-smoothing: antialiased;
+              }
+            }
+          }
+          .login {
+            margin-right: 16px;
+            height: 22px;
+            line-height: 22px;
+            color: #fff;
+            cursor: pointer;
+          }
+          .signup {
+            background: hsla(0, 0%, 100%, 0.2);
+            border: 1px solid #fff;
+            border-radius: 2px;
+            height: 36px;
+            line-height: 36px;
+            font-weight: 400;
+            font-size: 14px;
+            color: #fff;
+            padding: 0 10px;
+            cursor: pointer;
+          }
+        }
       }
     }
   }
