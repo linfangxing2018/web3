@@ -2,7 +2,7 @@
  * @Author: linfangxing2018 45490593+linfangxing2018@users.noreply.github.com
  * @Date: 2022-12-05 22:25:12
  * @LastEditors: linfangxing2018 45490593+linfangxing2018@users.noreply.github.com
- * @LastEditTime: 2022-12-09 00:00:44
+ * @LastEditTime: 2022-12-13 23:43:39
  * @FilePath: \web3\src\views\home\index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -88,7 +88,52 @@
               </div>
             </div>
             <div class="trendingListBox">
-              <a-table :dataSource="dataSource" :columns="columns" />
+              <a-table :pagination="false" :columns="columns" :data-source="data">
+                <template #bodyCell="{ column, record }">
+                  <template v-if="column.key === 'index'">
+                    <div class="rankBox">
+                      {{ record.key }}
+                    </div>
+                  </template>
+                  <template v-if="column.key === 'name'">
+                    <div class="collectionRows">
+                      <img
+                        alt=""
+                        src="https://upstairs-prod.s3.ap-southeast-1.amazonaws.com/uploads/2022_12_7/4/rc-upload-1670424223710-13-2022-12-0721.06.29.jpg"
+                      />
+                      <span class="tableText" style="width: 215px">{{ record.name }}</span>
+                    </div>
+                  </template>
+                  <template v-else-if="column.key === 'minimum'">
+                    <div class="tdNumberText">
+                      <span>15.8</span>
+                      <span class="textRise">+11.39%</span>
+                    </div>
+                  </template>
+                  <template v-else-if="column.key === 'turnover'">
+                    <div class="tdNumberText">
+                      <span class="tableText">1,362.9 USDT</span>
+                      <span class="textRise">+95.38%</span>
+                    </div>
+                  </template>
+                  <template v-else-if="column.key === 'volume'">
+                    <div class="tdNumberText">
+                      <span class="tableText">52</span>
+                      <span class="textRise">+95.38%</span>
+                    </div>
+                  </template>
+                  <template v-else-if="column.key === 'publications'">
+                    <div class="tdNumberText">
+                      <span class="tableText">52%</span>
+                    </div>
+                  </template>
+                  <template v-else-if="column.key === 'circulation'">
+                    <div class="tdNumberText">
+                      <span class="tableText">1000</span>
+                    </div>
+                  </template>
+                </template>
+              </a-table>
             </div>
           </div>
         </div>
@@ -104,6 +149,69 @@
   import Header from '/@/components/Header/index.vue';
 
   const appStore = useAppStore();
+  const columns = [
+    {
+      name: 'Index',
+      title: '',
+      dataIndex: 'index',
+      key: 'index',
+    },
+    {
+      name: 'Name',
+      title: '系列',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: '地板价',
+      dataIndex: 'minimum',
+      key: 'minimum',
+    },
+    {
+      title: '交易额',
+      dataIndex: 'turnover',
+      key: 'turnover',
+    },
+    {
+      title: '销量',
+      key: 'volume',
+      dataIndex: 'volume',
+    },
+    {
+      title: '刊登量',
+      key: 'publications',
+      dataIndex: 'publications',
+    },
+    {
+      title: '流通量',
+      key: 'circulation',
+      dataIndex: 'circulation',
+    },
+  ];
+
+  const data = [
+    {
+      key: '1',
+      name: 'John Brown',
+      age: 32,
+      address: 'New York No. 1 Lake Park',
+      tags: ['nice', 'developer'],
+    },
+    {
+      key: '2',
+      name: 'Jim Green',
+      age: 42,
+      address: 'London No. 1 Lake Park',
+      tags: ['loser'],
+    },
+    {
+      key: '3',
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park',
+      tags: ['cool', 'teacher'],
+    },
+  ];
 </script>
 
 <style lang="less" scoped>
@@ -376,6 +484,97 @@
             }
           }
           .trendingListBox {
+            /deep/ .ant-table {
+              color: #fff;
+              font-size: 14px;
+              border-spacing: 0 12px;
+              background: transparent;
+              // background: #181a27 !important;
+              thead {
+                border-radius: 4px;
+                margin-bottom: 12px;
+              }
+              .ant-table-thead > tr > th {
+                background: #20242a;
+                border-bottom: 0;
+                padding: 11px 16px;
+                color: #fff;
+              }
+              .ant-table-tbody > tr > td:first-child {
+                border-left: 1px solid hsla(0, 0%, 100%, 0.12);
+                border-radius: 4px 0 0 4px;
+                padding: 11px 4px 11px 24px;
+              }
+              .ant-table-tbody > tr > td {
+                transition: all 0.3s;
+                padding: 11px 16px;
+                border: 0;
+                height: 80px;
+                border-top: 1px solid hsla(0, 0%, 100%, 0.12);
+                border-bottom: 1px solid hsla(0, 0%, 100%, 0.12);
+                background: #181a27;
+                position: relative;
+              }
+              .ant-table-tbody > tr > td:before {
+                position: absolute;
+                top: 50%;
+                right: 0;
+                width: 1px;
+                height: 46px;
+                background: linear-gradient(180deg, hsla(0, 0%, 100%, 0), #fff 48.04%, hsla(0, 0%, 100%, 0));
+                transform: translateY(-50%);
+                transition: background 0.3s;
+                content: '';
+                opacity: 0.25;
+              }
+            }
+
+            .rankBox {
+              width: 100%;
+              height: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-weight: 600;
+              font-size: 20px;
+              line-height: 30px;
+            }
+            .collectionRows {
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              color: #fff;
+              img {
+                width: 58px;
+                height: 58px;
+                margin-right: 12px;
+                border-radius: 4px;
+              }
+              .tableText {
+                display: inline-block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                max-width: 100%;
+              }
+            }
+            .textRise {
+              color: #0fe2bc;
+              margin-left: 12px;
+            }
+            .tdNumberText {
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+            }
+
+            .tableText {
+              display: inline-block;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              max-width: 100%;
+            }
           }
         }
       }
