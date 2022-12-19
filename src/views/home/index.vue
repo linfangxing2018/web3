@@ -2,13 +2,12 @@
  * @Author: linfangxing2018 45490593+linfangxing2018@users.noreply.github.com
  * @Date: 2022-12-05 22:25:12
  * @LastEditors: linfangxing2018 45490593+linfangxing2018@users.noreply.github.com
- * @LastEditTime: 2022-12-13 23:43:39
+ * @LastEditTime: 2022-12-14 22:09:14
  * @FilePath: \web3\src\views\home\index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <template>
   <div class="home">
-    <Header />
     <div id="children">
       <div class="h-container">
         <div class="banBox">
@@ -137,6 +136,82 @@
             </div>
           </div>
         </div>
+        <div class="Upstairs">
+          <div class="header"><span class="title">平台特点</span></div>
+          <div class="introBox">
+            <div class="introItem" v-for="(item, index) in 4" :key="item">
+              <img
+                src="https://upstairs-prod.s3.ap-southeast-1.amazonaws.com/uploads/2022_10_11//rc-upload-1665496481629-3-rc-upload-1665108676298-7-7.MetaverseVirtualWorld.png"
+              />
+              <div class="introTitle">独家IP合作资源</div>
+              <div class="content">浏览您最喜爱的品牌和艺术家策划的优质的艺术作品。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="width1250">
+          <div class="topElement">
+            <div class="copyright">
+              <img src="https://static-prod.upstairs.io/websites/www/assets/common/logo-icon.svg" alt="logo" />
+              <div>将NFT提升到新的境界</div>
+            </div>
+            <div class="menuBox">
+              <a class="menuItem">首页</a>
+              <a class="menuItem">新品</a>
+              <a class="menuItem">市场</a>
+              <a class="menuItem">质押</a>
+              <a class="menuItem">公告</a>
+              <a class="menuItem" href="https://www.upstairs.io/announcement/?tab=faqs" target="_blank" rel="noopener noreferrer"
+                >常见问题</a
+              >
+            </div>
+            <div class="links">
+              <div class="join">联系我们</div>
+              <div class="ant-space ant-space-horizontal ant-space-align-center" style="gap: 14px">
+                <div class="ant-space-item" style="">
+                  <a href="https://t.me/upstairsmarketplace" target="_blank" rel="noopener noreferrer">
+                    <img src="https://static-prod.upstairs.io/websites/www/assets/common/tg.svg" alt="telegram" />
+                  </a>
+                </div>
+                <div class="ant-space-item" style="">
+                  <a href="https://www.instagram.com/upstairsnft/" target="_blank" rel="noopener noreferrer">
+                    <img src="https://static-prod.upstairs.io/websites/www/assets/common/ins.svg" alt="instagram" />
+                  </a>
+                </div>
+                <div class="ant-space-item" style="">
+                  <a href="https://twitter.com/UpstairsNFT" target="_blank" rel="noopener noreferrer">
+                    <img src="https://static-prod.upstairs.io/websites/www/assets/common/tw.svg" alt="twitter" />
+                  </a>
+                </div>
+                <div class="ant-space-item" style="">
+                  <a href="https://www.facebook.com/upstairsnft" target="_blank" rel="noopener noreferrer">
+                    <img src="https://static-prod.upstairs.io/websites/www/assets/common/fb.svg" alt="facebook" />
+                  </a>
+                </div>
+                <div class="ant-space-item" style="">
+                  <a href="https://www.discord.gg/upstairs" target="_blank" rel="noopener noreferrer">
+                    <img src="https://static-prod.upstairs.io/websites/www/assets/common/dc.svg" alt="dicsord" />
+                  </a>
+                </div>
+                <div class="ant-space-item">
+                  <a href="https://www.youtube.com/channel/UCIv9Im4uLzgdOfGLE1HMzPw" target="_blank" rel="noopener noreferrer">
+                    <img src="https://static-prod.upstairs.io/websites/www/assets/common/ytb.svg" alt="youtube" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bottomElement">
+            <span>一般查询及建议: contact@upstairs.io</span>
+            <span class="division">|</span>
+            <span>客服支持: support@upstairs.io</span>
+            <span class="division">|</span>
+            <span>© 2022 Upstairs Research, Pte Ltd</span>
+            <span class="division">|</span>
+            <a href="https://www.certik.com/projects/upstairs#audit" target="_blank" rel="noopener noreferrer">Audited by CERTIK</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -145,8 +220,6 @@
 <script setup lang="ts">
   import SvgIcon from '/@/components/SvgIcon/index.vue';
   import { useAppStore } from '/@/store/modules/app';
-
-  import Header from '/@/components/Header/index.vue';
 
   const appStore = useAppStore();
   const columns = [
@@ -221,7 +294,6 @@
     align-items: center;
     min-height: 100vh;
 
-    background-color: #11161c;
     #children {
       flex: 1 0 auto;
       width: 100%;
@@ -574,6 +646,108 @@
               text-overflow: ellipsis;
               white-space: nowrap;
               max-width: 100%;
+            }
+          }
+        }
+        .Upstairs {
+          width: 1250px;
+          margin: 0 auto;
+          padding: 44px 0 0;
+          .header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            .title {
+              font-weight: 500;
+              font-size: 32px;
+              line-height: 50px;
+              color: #fff;
+            }
+          }
+          .introBox {
+            padding: 32px 24px 32px 36px;
+            background: linear-gradient(180deg, rgba(126, 70, 242, 0.15), rgba(126, 70, 242, 0) 48.51%),
+              linear-gradient(180deg, rgba(28, 19, 70, 0.45), rgba(31, 32, 69, 0.45)), #11161c;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            .introItem {
+              width: 268px;
+              img {
+                width: 70px;
+                height: 70px;
+              }
+              .introTitle {
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 36px;
+                color: #fff;
+                margin: 20px 0 6px;
+              }
+              .content {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 20px;
+                color: hsla(0, 0%, 100%, 0.5);
+              }
+            }
+          }
+        }
+      }
+      .footer {
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 178px;
+        margin-bottom: 0;
+        color: hsla(0, 0%, 100%, 0.5) !important;
+        font-weight: 400;
+        font-style: normal;
+        background-color: #061832 !important;
+        .width1250 {
+          width: 1250px;
+          height: 178px;
+          padding: 30px 0 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          .topElement {
+            display: flex;
+            justify-content: flex-start;
+            height: 123px;
+            border-bottom: 1px solid hsla(0, 0%, 76.9%, 0.1);
+            .copyright {
+              width: 240px;
+              img {
+                margin-bottom: 20px;
+              }
+            }
+            .menuBox {
+              flex: 1 1;
+              text-align: center;
+              .menuItem {
+                display: inline-block;
+                color: #fff;
+                position: relative;
+                margin: 0 8px;
+              }
+            }
+            .links {
+              width: 250px;
+              position: relative;
+              .join {
+                margin-bottom: 14px;
+              }
+            }
+          }
+          .bottomElement {
+            height: 54px;
+            margin-top: 16px;
+            .division {
+              margin: 0 12px;
             }
           }
         }

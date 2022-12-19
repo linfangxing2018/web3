@@ -2,7 +2,7 @@
  * @Author: linfangxing2018 45490593+linfangxing2018@users.noreply.github.com
  * @Date: 2022-12-05 21:53:32
  * @LastEditors: linfangxing2018 45490593+linfangxing2018@users.noreply.github.com
- * @LastEditTime: 2022-12-07 00:13:11
+ * @LastEditTime: 2022-12-19 20:42:42
  * @FilePath: \web3\src\components\Header\index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -15,45 +15,22 @@
         </span>
         <div class="beta">Beta</div>
         <div class="menuBox">
-          <a class="menuItem active" key="1">首页</a>
-          <a class="menuItem">新品</a>
-          <a class="menuItem">市场</a>
-          <a class="menuItem"
-            >质押
-            <img class="newTag___1Z4WJ" src="https://static-prod.upstairs.io/websites/www/assets/common/new_tag.svg" alt="" srcset="" />
-          </a>
-          <a class="menuItem">我的物品</a>
-          <a-dropdown class="menuItem"
-            ><a
-              >账户
-              <span role="img" aria-label="caret-down" class="anticon anticon-caret-down" style="margin-left: 8px">
-                <svg
-                  viewBox="0 0 1024 1024"
-                  focusable="false"
-                  data-icon="caret-down"
-                  width="1em"
-                  height="1em"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"
-                  />
-                </svg>
-              </span>
-            </a>
-            <template #overlay>
-              <a-menu>
-                <a-menu-item>
-                  <a href="javascript:;">English</a>
-                </a-menu-item>
-                <a-menu-item>
-                  <a href="javascript:;">简体中文</a>
-                </a-menu-item>
-              </a-menu>
-            </template></a-dropdown
-          >
-          <a class="menuItem">公告</a>
+          <router-link
+            :to="item.to"
+            class="menuItem"
+            :class="{ active: curActive === index }"
+            @click="checkNav(index)"
+            v-for="(item, index) in navList"
+            :key="item.name"
+            >{{ item.name }}
+            <img
+              v-if="item.name === '质押'"
+              class="newTag___1Z4WJ"
+              src="https://static-prod.upstairs.io/websites/www/assets/common/new_tag.svg"
+              alt=""
+              srcset=""
+            />
+          </router-link>
         </div>
         <div class="rightContent">
           <div class="selectLanguage">
@@ -100,7 +77,33 @@
   // import { useAppStore } from '/@/store';
   // import Header from '/@/components/Header/index.vue';
 
-  const selectedKeys = ref<string[]>(['1']);
+  // const selectedKeys = ref<string[]>(['1']);
+  const navList = ref([
+    {
+      name: '首页',
+      to: '/home',
+    },
+    {
+      name: '新品',
+      to: '/newProduct',
+    },
+    {
+      name: '市场',
+      to: '/home',
+    },
+    {
+      name: '质押',
+      to: '/home',
+    },
+    {
+      name: '公告',
+      to: '/home',
+    },
+  ]);
+  const curActive = ref(0);
+  const checkNav = (index: number) => {
+    curActive.value = index;
+  };
 </script>
 
 <style lang="less">
