@@ -20,6 +20,7 @@
   "dependencies": {
     "@vueuse/components": "^9.6.0",
     "@vueuse/core": "^9.6.0",
+    "amfe-flexible": "^2.2.1",
     "ant-design-vue": "^3.2.15",
     "axios": "^1.2.0",
     "dayjs": "^1.11.6",
@@ -54,6 +55,7 @@
     "postcss-html": "^1.5.0",
     "postcss-less": "^6.0.0",
     "postcss-px-to-viewport": "^1.1.1",
+    "postcss-pxtorem": "^6.0.0",
     "prettier": "^2.8.0",
     "rollup-plugin-visualizer": "^5.8.3",
     "stylelint": "^14.15.0",

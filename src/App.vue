@@ -2,7 +2,7 @@
  * @Author: linfangxing2018 45490593+linfangxing2018@users.noreply.github.com
  * @Date: 2022-12-05 21:53:31
  * @LastEditors: linfangxing2018 45490593+linfangxing2018@users.noreply.github.com
- * @LastEditTime: 2022-12-19 21:43:26
+ * @LastEditTime: 2023-01-03 23:37:49
  * @FilePath: \web3\src\App.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -15,7 +15,7 @@
   import Header from '/@/components/Header/index.vue';
 </script>
 
-<style>
+<style lang="less">
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -26,12 +26,13 @@
   }
   html {
     /* 方便unocss计算：1单位 = 0.25rem = 1px */
-    font-size: 4px;
+    /* font-size: 4px; */
   }
   #children {
     flex: 1 0 auto;
     width: 100%;
-    height: calc(100vh - 68px);
+    /* height: calc(100vh - 68px); */
+    min-height: 100vh;
     overflow: auto;
   }
   .ghostBtn {
@@ -60,5 +61,16 @@
     align-items: center;
     justify-content: center;
     white-space: nowrap;
+  }
+  .ant-select-dropdown .ant-select-item {
+    color: #fff;
+    background-color: #1d212e;
+    min-height: 46px;
+    line-height: 36px;
+  }
+
+  .ant-select-dropdown .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+    background: hsla(0, 0%, 100%, 0.1);
+    box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
   }
 </style>

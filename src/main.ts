@@ -2,7 +2,7 @@
  * @Author: linfangxing2018 45490593+linfangxing2018@users.noreply.github.com
  * @Date: 2022-12-05 21:53:31
  * @LastEditors: linfangxing2018 45490593+linfangxing2018@users.noreply.github.com
- * @LastEditTime: 2022-12-05 22:04:25
+ * @LastEditTime: 2022-12-20 21:21:29
  * @FilePath: \web3\src\main.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -17,6 +17,8 @@ import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
 // 支持SVG
 import 'virtual:svg-icons-register';
+// 移动端适配
+import 'amfe-flexible';
 
 const app = createApp(App);
 

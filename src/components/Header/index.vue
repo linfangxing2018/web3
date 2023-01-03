@@ -89,7 +89,7 @@
     },
     {
       name: '市场',
-      to: '/home',
+      to: '/goods',
     },
     {
       name: '质押',
