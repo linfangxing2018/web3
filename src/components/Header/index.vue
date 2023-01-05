@@ -97,7 +97,7 @@
     },
     {
       name: '公告',
-      to: '/home',
+      to: '/announcement',
     },
   ]);
   const curActive = ref(0);

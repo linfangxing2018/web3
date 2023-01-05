@@ -2,7 +2,7 @@
  * @Author: linfangxing2018 45490593+linfangxing2018@users.noreply.github.com
  * @Date: 2022-12-05 21:53:31
  * @LastEditors: linfangxing2018 45490593+linfangxing2018@users.noreply.github.com
- * @LastEditTime: 2023-01-03 23:46:18
+ * @LastEditTime: 2023-01-05 21:56:59
  * @FilePath: \web3\src\App.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -53,6 +53,44 @@
             <a-select v-model:value="selectValue" class="select" :options="options" @change="handleChange" :dropdownStyle="dropdownStyle" />
           </div>
         </div>
+        <div class="marketCont">
+          <div class="Product marketProduct" v-for="(item, index) in 14" :key="item" style="width: 277px; height: 339px">
+            <div class="mask marketProductMask" style="padding: 9px 9px 12px">
+              <div class="imgBox">
+                <div>
+                  <img
+                    class="smallImg"
+                    src="https://upstairs-prod.s3.ap-southeast-1.amazonaws.com/nfts/0x721cCd3E9b13D2Db47002892e048C1D9537a0d14/image/1785?mystery=false&amp;opened=true"
+                  />
+                </div>
+                <div class="rankPcLine">
+                  <img src="https://static-prod.upstairs.io/websites/www/assets/account/rank.svg" alt="" />
+                  稀有度 678
+                </div>
+              </div>
+              <div class="productContWrap">
+                <div class="productDesc">
+                  <div class="productName">Mutant Kiddo #1785</div>
+                  <div class="productDescRow">
+                    <span class="descField">Upstairs</span>
+                    <span class="descValue">30 USDT</span>
+                  </div>
+                </div>
+                <div class="cartOperations">
+                  <div class="cartItem">
+                    <img src="https://static-prod.upstairs.io/websites/www/assets/common/flash.svg" alt="flash" />
+                    立即购买
+                  </div>
+                  <div class="splitCart"></div>
+                  <div class="cartItem">
+                    <img src="https://static-prod.upstairs.io/websites/www/assets/common/cart.svg" alt="cart" />
+                    加入购物车
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -80,6 +118,9 @@
 
 <style lang="less" scoped>
   .goods {
+    div {
+      display: block;
+    }
     .marketContainer {
       width: 1250px;
       display: flex;
@@ -252,6 +293,135 @@
           font-weight: 600;
           color: #fff;
           padding: 0 16px;
+        }
+      }
+
+      .marketCont {
+        padding: 0 0 60px;
+        height: 100%;
+        display: grid;
+        justify-content: space-between;
+        grid-template-columns: repeat(auto-fill, 277px);
+        grid-template-rows: repeat(auto-fill, 339px);
+        grid-row-gap: 24px;
+        .marketProduct {
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 22px;
+          grid-gap: 12px;
+          margin-top: 0;
+
+          .cartOperations {
+            display: none;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 22px;
+            .cartItem {
+              flex: 1 1;
+              cursor: pointer;
+              text-align: center;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              img {
+                margin-right: 10px;
+              }
+            }
+            .splitCart {
+              width: 1px;
+              height: 46px;
+              background: linear-gradient(180deg, hsla(0, 0%, 100%, 0), #fff 48.04%, hsla(0, 0%, 100%, 0));
+              opacity: 0.25;
+            }
+          }
+        }
+
+        .Product:hover {
+          .cartOperations {
+            z-index: 1000;
+            display: flex;
+            background: linear-gradient(#181a27 0 0) padding-box,
+              linear-gradient(119.17deg, rgba(0, 230, 161, 0.144) 4.16%, rgba(126, 70, 242, 0.45) 87.53%) border-box;
+          }
+        }
+        .Product {
+          position: relative;
+          transition: all 0.6s;
+          cursor: pointer;
+          .mask {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: #fff;
+            backdrop-filter: blur(60px);
+            .imgBox {
+              position: relative;
+              .smallImg {
+                width: 100%;
+                height: 257px;
+                border-radius: 8px;
+              }
+              .rankPcLine {
+                position: absolute;
+                left: 12px;
+                top: 12px;
+                padding: 5px 10px;
+                display: flex;
+                align-items: center;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 22px;
+                color: #fff;
+                background: rgba(48, 63, 82, 0.5);
+                backdrop-filter: blur(10px);
+                border-radius: 8px 0;
+                img {
+                  display: inline-block;
+                  width: 16px;
+                  height: 16px;
+                  margin-right: 6px;
+                }
+              }
+            }
+            .productContWrap {
+              position: relative;
+            }
+          }
+          .marketProductMask {
+            border-radius: 8px;
+            border: 1px solid transparent;
+            background: linear-gradient(#181a27 0 0) padding-box,
+              linear-gradient(119.17deg, rgba(0, 230, 161, 0.144) 4.16%, rgba(126, 70, 242, 0.45) 87.53%) border-box;
+          }
+        }
+        .productName {
+          font-weight: 500;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+        .productDescRow {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-top: 2px;
+          .descField {
+            color: hsla(0, 0%, 100%, 0.5);
+            font-weight: 400;
+          }
+          .descValue {
+            color: #0fe2bc;
+            font-weight: 500;
+          }
         }
       }
     }
